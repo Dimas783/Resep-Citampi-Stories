@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Warga Citampi - Citampi Stories</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="game-header">
+        <div class="top-action-bar">
+            <button id="editModeToggle" class="action-btn" aria-label="Mode Edit">
+                <span class="action-icon">✏️</span>
+                <span class="action-text">Mode Edit: OFF</span>
+            </button>
+            <button id="themeToggle" class="action-btn" aria-label="Ganti Tema">
+                <span class="theme-icon">🌙</span>
+                <span class="theme-text">Gelap</span>
+            </button>
+        </div>
+
+        <div class="logo-container">
+            <span class="pixel-badge">GAME WIKI</span>
+            <h1 class="game-title">Citampi Stories</h1>
+            <p class="game-subtitle">Resep dan Tips di Game Citampi Stories</p>
+        </div>
+        
+        <nav class="category-nav">
+            <button class="nav-btn active" data-tab="crafting">🛠️ Crafting</button>
+            <button class="nav-btn" data-tab="fishing">🎣 Mancing</button>
+            <button class="nav-btn" data-tab="gifting">🎁 Hadiah Warga</button>
+            <button class="nav-btn" data-tab="skills">⚡ Tingkatkan Skill</button>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+        
+        <!-- Search & Filter Bar -->
+        <div class="search-bar-wrap">
+            <input type="text" id="searchInput" placeholder="Cari resep, ikan, nama karakter, atau cara latihan...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <!-- TEMPLATE CONTAINER UNTUK TIAP TAB KATEGORI -->
+        <!-- TAB 1: CRAFTING -->
+        <section id="crafting" class="tab-content active">
+            <div class="hub-view">
+                <div class="section-title">
+                    <h2>Kategori Crafting</h2>
+                    <p>Pilih bubble di bawah atau buat bubble baru untuk melihat resep!</p>
+                </div>
+                <div class="add-bubble-wrap edit-only" style="display: none;">
+                    <button class="add-btn" onclick="openBubbleModal('crafting')">➕ Tambah Bubble Crafting</button>
+                </div>
+                <div class="bubble-grid" id="craftingBubbleGrid"></div>
+            </div>
+            <div class="detail-view" style="display: none;">
+                <div class="sub-header-bar">
+                    <button class="back-btn" onclick="backToHub('crafting')">⬅ Kembali ke Pilihan Bubble</button>
+                    <div class="level-filters" id="craftingLevelFilters">
+                        <button class="level-btn active" data-level="all">Semua Resep</button>
+                        <button class="level-btn" data-level="1">Level 1</button>
+                        <button class="level-btn" data-level="2">Level 2</button>
+                        <button class="level-btn" data-level="3">Level 3</button>
+                    </div>
+                </div>
+                <div class="section-title">
+                    <h2 class="active-bubble-title">Daftar Resep</h2>
+                    <p class="active-bubble-desc">Resep dan panduan item.</p>
+                </div>
+                <div class="add-card-wrap edit-only" style="display: none;">
+                    <button class="add-btn" onclick="openCardModal()">➕ Tambah Resep Baru</button>
+                </div>
+                <div class="card-grid" id="craftingCardGrid"></div>
+            </div>
+        </section>
+
+        <!-- TAB 2: MANCING -->
+        <section id="fishing" class="tab-content">
+            <div class="hub-view">
+                <div class="section-title">
+                    <h2>Kategori Mancing</h2>
+                    <p>Pilih bubble lokasi atau buat bubble baru!</p>
+                </div>
+                <div class="add-bubble-wrap edit-only" style="display: none;">
+                    <button class="add-btn" onclick="openBubbleModal('fishing')">➕ Tambah Bubble Mancing</button>
+                </div>
+                <div class="bubble-grid" id="fishingBubbleGrid"></div>
+            </div>
+            <div class="detail-view" style="display: none;">
+                <div class="sub-header-bar">
+                    <button class="back-btn" onclick="backToHub('fishing')">⬅ Kembali ke Pilihan Bubble</button>
+                </div>
+                <div class="section-title">
+                    <h2 class="active-bubble-title">Daftar Mancing</h2>
+                    <p class="active-bubble-desc">Waktu, umpan, dan jenis tangkapan.</p>
+                </div>
+                <div class="add-card-wrap edit-only" style="display: none;">
+                    <button class="add-btn" onclick="openCardModal()">➕ Tambah Data Mancing</button>
+                </div>
+                <div class="card-grid" id="fishingCardGrid"></div>
+            </div>
+        </section>
+
+        <!-- TAB 3: HADIAH WARGA -->
+        <section id="gifting" class="tab-content">
+            <div class="hub-view">
+                <div class="section-title">
+                    <h2>Kategori Warga & Hadiah</h2>
+                    <p>Pilih bubble kelompok warga atau buat bubble baru!</p>
+                </div>
+                <div class="add-bubble-wrap edit-only" style="display: none;">
+                    <button class="add-btn" onclick="openBubbleModal('gifting')">➕ Tambah Bubble Warga</button>
+                </div>
+                <div class="bubble-grid" id="giftingBubbleGrid"></div>
+            </div>
+            <div class="detail-view" style="display: none;">
+                <div class="sub-header-bar">
+                    <button class="back-btn" onclick="backToHub('gifting')">⬅ Kembali ke Pilihan Bubble</button>
+                </div>
+                <div class="section-title">
+                    <h2 class="active-bubble-title">Daftar Hadiah</h2>
+                    <p class="active-bubble-desc">Daftar barang kesukaan warga dan heroin.</p>
+                </div>
+                <div class="add-card-wrap edit-only" style="display: none;">
+                    <button class="add-btn" onclick="openCardModal()">➕ Tambah Data Warga</button>
+                </div>
+                <div class="card-grid" id="giftingCardGrid"></div>
+            </div>
+        </section>
+
+        <!-- TAB 4: TINGKATKAN SKILL -->
+        <section id="skills" class="tab-content">
+            <div class="hub-view">
+                <div class="section-title">
+                    <h2>Kategori Pelatihan Skill</h2>
+                    <p>Pilih bubble kemampuan atau buat bubble baru!</p>
+                </div>
+                <div class="add-bubble-wrap edit-only" style="display: none;">
+                    <button class="add-btn" onclick="openBubbleModal('skills')">➕ Tambah Bubble Skill</button>
+                </div>
+                <div class="bubble-grid" id="skillsBubbleGrid"></div>
+            </div>
+            <div class="detail-view" style="display: none;">
+                <div class="sub-header-bar">
+                    <button class="back-btn" onclick="backToHub('skills')">⬅ Kembali ke Pilihan Bubble</button>
+                </div>
+                <div class="section-title">
+                    <h2 class="active-bubble-title">Daftar Skill</h2>
+                    <p class="active-bubble-desc">Cara latihan dan pekerjaan yang terbuka.</p>
+                </div>
+                <div class="add-card-wrap edit-only" style="display: none;">
+                    <button class="add-btn" onclick="openCardModal()">➕ Tambah Panduan Skill</button>
+                </div>
+                <div class="card-grid" id="skillsCardGrid"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL 1: EDIT / TAMBAH BUBBLE -->
+    <div id="bubbleModal" class="modal-backdrop" style="display: none;">
+        <div class="modal-box">
+            <h3 id="bubbleModalTitle">Kelola Bubble</h3>
+            <form id="bubbleForm">
+                <input type="hidden" id="bubbleCategoryKey">
+                <input type="hidden" id="bubbleIndex">
+
+                <div class="form-group">
+                    <label>Ikon Emoji <small style="font-weight: normal; opacity: 0.8;">(Opsional)</small>:</label>
+                    <input type="text" id="bubbleInputIcon" placeholder="Boleh kosong (Contoh: 🛠️ atau 🌊)">
+                </div>
+
+                <div class="form-group">
+                    <label>Nama Bubble / Folder:</label>
+                    <input type="text" id="bubbleInputTitle" placeholder="Contoh: Meja Produksi, Sungai Area 3" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Keterangan Singkat:</label>
+                    <textarea id="bubbleInputDesc" rows="2" placeholder="Deskripsi singkat isi bubble..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeBubbleModal()">Batal</button>
+                    <button type="submit" class="btn-save">Simpan Bubble</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: EDIT / TAMBAH KARTU / RESEP -->
+    <div id="cardModal" class="modal-backdrop" style="display: none;">
+        <div class="modal-box">
+            <h3 id="cardModalTitle">Edit Kartu</h3>
+            <form id="cardForm">
+                <input type="hidden" id="cardItemIndex">
+
+                <div class="form-group" id="levelInputGroup" style="display: none;">
+                    <label>Level (Khusus Crafting):</label>
+                    <select id="inputLevel">
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Icon (Emoji) <small style="font-weight: normal; opacity: 0.8;">(Opsional)</small>:</label>
+                    <input type="text" id="inputIcon" placeholder="Boleh kosong (Contoh: 🎣 atau 💎)">
+                </div>
+
+                <div class="form-group">
+                    <label>Judul:</label>
+                    <input type="text" id="inputTitle" placeholder="Nama resep / ikan / warga / skill" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Kategori (Badge):</label>
+                    <input type="text" id="inputBadge" placeholder="Contoh: Meja Level 1, Sungai Area 3" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Rincian Resep/Info (Format: Label | Nilai, baris baru):</label>
+                    <textarea id="inputDetails" rows="4" placeholder="Resep 1 | 2x Balok Kayu&#10;Resep 2 | 1x Paku Besi"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Tips:</label>
+                    <textarea id="inputTip" rows="2" placeholder="Catatan atau tips berguna..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeCardModal()">Batal</button>
+                    <button type="submit" class="btn-save">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="game-footer">
+        <p>Fan-made Guide Website • Citampi Stories by Ikan Asin Production</p>
+        <p class="sub-credit">Tetap semangat, jangan sampai kena tagih rentenir di kampung!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,718 @@
+/* ================= TEMA DEFAULT: GELAP (DARK COZY) ================= */
+:root {
+    --bg-main: #1e1b18;
+    --bg-pattern: #282420;
+    --card-bg: #2a2521;
+    --card-hover: #332d28;
+    --border-color: #120f0d;
+    --header-top: #5c381e;
+    --header-bottom: #3d2413;
+    --nav-btn-bg: #3b322b;
+    --accent-orange: #d97724;
+    --accent-yellow: #e5a93b;
+    --badge-bg: #442a17;
+    --badge-border: #5a381f;
+    --text-main: #f0e6d2;
+    --text-muted: #b5a494;
+    --input-bg: #24201c;
+    --tip-box-bg: #211c18;
+    --footer-bg: #171412;
+    --title-color: #e5a93b;
+    --card-title-color: #ffffff;
+    --pixel-shadow: 4px 4px 0px var(--border-color);
+}
+
+/* ================= TEMA TERANG: TERANG (WARM CITAMPI) ================= */
+[data-theme="light"] {
+    --bg-main: #f5eedb;
+    --bg-pattern: #e2d3be;
+    --card-bg: #ffffff;
+    --card-hover: #fffaf0;
+    --border-color: #4a2e18;
+    --header-top: #ffaa42;
+    --header-bottom: #e67d19;
+    --nav-btn-bg: #ffe4a0;
+    --accent-orange: #d96f13;
+    --accent-yellow: #d89b1c;
+    --badge-bg: #5c381e;
+    --badge-border: #3b2210;
+    --text-main: #382414;
+    --text-muted: #6b5744;
+    --input-bg: #ffffff;
+    --tip-box-bg: #fff5d6;
+    --footer-bg: #e2d1b8;
+    --title-color: #5c381e;
+    --card-title-color: #5c381e;
+    --pixel-shadow: 4px 4px 0px #4a2e18;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--bg-main);
+    background-image: radial-gradient(var(--bg-pattern) 18%, transparent 19%);
+    background-size: 22px 22px;
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* Header */
+.game-header {
+    position: relative;
+    background: linear-gradient(180deg, var(--header-top) 0%, var(--header-bottom) 100%);
+    border-bottom: 4px solid var(--border-color);
+    padding: 26px 16px 16px;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Tombol Switch Tema di Pojok Kanan Atas */
+.theme-toggle-btn {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border: 3px solid var(--border-color);
+    border-radius: 20px;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    box-shadow: 2px 2px 0px var(--border-color);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.theme-toggle-btn:hover {
+    transform: translateY(-2px);
+}
+
+.theme-toggle-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.pixel-badge {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background-color: var(--border-color);
+    color: var(--accent-yellow);
+    padding: 5px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: #ffffff;
+    text-shadow: 3px 3px 0px var(--border-color);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.game-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+/* Navigasi */
+.category-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.nav-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border: 3px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--nav-btn-bg);
+    color: var(--text-main);
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--border-color);
+}
+
+.nav-btn:hover {
+    filter: brightness(1.1);
+}
+
+.nav-btn:active, .nav-btn.active {
+    background-color: var(--accent-orange);
+    color: #ffffff;
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--border-color);
+}
+
+/* Search Bar */
+.search-bar-wrap {
+    max-width: 600px;
+    margin: 28px auto 12px;
+    position: relative;
+    padding: 0 16px;
+}
+
+.search-bar-wrap input {
+    width: 100%;
+    padding: 12px 42px 12px 18px;
+    font-size: 15px;
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border: 3px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: var(--pixel-shadow);
+    outline: none;
+}
+
+.search-bar-wrap input:focus {
+    border-color: var(--accent-orange);
+}
+
+.search-bar-wrap input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-bar-wrap .search-icon {
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Kontainer Card */
+.main-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 16px;
+}
+
+.section-title {
+    text-align: center;
+    margin: 20px 0 25px;
+}
+
+.section-title h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    color: var(--title-color);
+    margin-bottom: 8px;
+}
+
+.section-title p {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Kartu */
+.guide-card {
+    background: var(--card-bg);
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: var(--pixel-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.guide-card:hover {
+    transform: translateY(-3px);
+    background-color: var(--card-hover);
+}
+
+.card-badge {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 6px;
+    color: var(--accent-yellow);
+    background-color: var(--badge-bg);
+    border: 1px solid var(--badge-border);
+    margin-bottom: 12px;
+}
+
+.guide-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--card-title-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.guide-card ul {
+    list-style: none;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.guide-card li strong {
+    color: var(--accent-yellow);
+}
+
+/* Tips */
+.tip-box {
+    margin-top: 14px;
+    background-color: var(--tip-box-bg);
+    border-left: 4px solid var(--accent-orange);
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.tip-box b {
+    color: var(--accent-orange);
+}
+
+/* Footer */
+.game-footer {
+    text-align: center;
+    padding: 32px 16px;
+    border-top: 3px solid var(--border-color);
+    background-color: var(--footer-bg);
+    margin-top: 48px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.sub-credit {
+    font-size: 12px;
+    margin-top: 6px;
+    opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    .theme-toggle-btn {
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    .game-title {
+        font-size: 18px;
+        margin-top: 24px;
+    }
+}
+
+/* ================= TAMBAHAN FITUR BUBBLE & MODE EDIT ================= */
+
+/* Action Bar di Header */
+.top-action-bar {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border: 3px solid var(--border-color);
+    border-radius: 20px;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    box-shadow: 2px 2px 0px var(--border-color);
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.action-btn.active-mode {
+    background-color: #ffd154;
+    color: #382414;
+}
+
+.action-btn.danger {
+    background-color: #d94343;
+    color: #fff;
+}
+
+/* Bubble Kategori Utama (Hub) */
+.hub-container {
+    max-width: 650px;
+    margin: 20px auto 40px;
+}
+
+.hub-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.hub-bubble-btn {
+    width: 100%;
+    background: var(--card-bg);
+    border: 4px solid var(--border-color);
+    border-radius: 22px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: var(--pixel-shadow);
+    transition: transform 0.15s ease, background-color 0.2s ease;
+    color: var(--text-main);
+}
+
+.hub-bubble-btn:hover {
+    transform: translateY(-5px);
+    background-color: var(--card-hover);
+}
+
+.hub-bubble-btn:active {
+    transform: translateY(1px);
+}
+
+.hub-icon {
+    font-size: 48px;
+}
+
+.hub-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 18px;
+    color: var(--title-color);
+}
+
+.hub-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.hub-badge {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 12px;
+    background-color: var(--accent-orange);
+    color: #fff;
+}
+
+/* Sub-Header Bar (Kembali & Level Filter) */
+.sub-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    padding: 8px 16px;
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    cursor: pointer;
+    box-shadow: 2px 2px 0 var(--border-color);
+}
+
+.back-btn:hover {
+    background-color: var(--card-hover);
+}
+
+.level-filters {
+    display: flex;
+    gap: 8px;
+}
+
+.level-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border: 3px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--nav-btn-bg);
+    color: var(--text-main);
+    cursor: pointer;
+    box-shadow: 0 3px 0 var(--border-color);
+}
+
+.level-btn.active {
+    background-color: var(--accent-orange);
+    color: #fff;
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 var(--border-color);
+}
+
+/* Tombol Tambah & Aksi Kartu di Mode Edit */
+.add-card-wrap {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.add-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    padding: 8px 16px;
+    background-color: #2e8b57;
+    color: #fff;
+    border: 3px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 2px 2px 0 var(--border-color);
+    cursor: pointer;
+}
+
+.card-edit-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.card-edit-controls button {
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--nav-btn-bg);
+    color: var(--text-main);
+}
+
+.card-edit-controls button.btn-del {
+    background-color: #c93b3b;
+    color: #fff;
+}
+
+/* Modal Edit / Tambah Form */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.modal-box {
+    background: var(--card-bg);
+    border: 4px solid var(--border-color);
+    border-radius: 16px;
+    max-width: 500px;
+    width: 100%;
+    padding: 24px;
+    box-shadow: var(--pixel-shadow);
+    color: var(--text-main);
+}
+
+.modal-box h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    margin-bottom: 18px;
+    color: var(--title-color);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    font-family: 'Fredoka', sans-serif;
+    padding: 8px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    padding: 8px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: #888;
+    color: #fff;
+}
+
+.btn-save {
+    background: var(--accent-orange);
+    color: #fff;
+}
+
+@media (max-width: 700px) {
+    .top-action-bar {
+        position: static;
+        justify-content: center;
+        margin-bottom: 14px;
+    }
+}
+
+/* ================= GRID & TAMPILAN BUBBLE ================= */
+.add-bubble-wrap {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.bubble-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 950px;
+    margin: 0 auto 30px;
+}
+
+.bubble-card-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.hub-bubble-btn {
+    width: 100%;
+    flex: 1;
+    background: var(--card-bg);
+    border: 4px solid var(--border-color);
+    border-radius: 20px;
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: var(--pixel-shadow);
+    transition: transform 0.15s ease, background-color 0.2s ease;
+    color: var(--text-main);
+}
+
+.hub-bubble-btn:hover {
+    transform: translateY(-5px);
+    background-color: var(--card-hover);
+}
+
+.hub-bubble-btn:active {
+    transform: translateY(1px);
+}
+
+.hub-icon {
+    font-size: 42px;
+}
+
+.hub-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--title-color);
+}
+
+.hub-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.hub-count {
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 12px;
+    background-color: var(--accent-orange);
+    color: #fff;
+}
+
+.bubble-edit-controls {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.bubble-edit-controls button {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--nav-btn-bg);
+    color: var(--text-main);
+}
+
+.bubble-edit-controls button.btn-del {
+    background-color: #c93b3b;
+    color: #fff;
+}
